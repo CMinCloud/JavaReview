@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!-- 1.关联数据库配置文件 -->
+    <context:property-placeholder location="classpath:db.properties"/>
+
+    <!-- 2.配置DataSource数据源：读取数据库配置文件，这里使用的Spring默认的数据源JDBC -->
+
+    <!-- 3.配置sqlSessionFactory工厂对象 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- 2.1 引用dataSource数据源 -->
+        <property name="dataSource" ref="dataSource"/>
+        <!-- 2.2 绑定Mybatis的核心配置文件 -->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <!-- 2.3 在核心配置文件中注册Mapper.xml文件 -->
+        <property name="mapperLocations" value="classpath*:com/kuang/mapper/*.xml"/>
+    </bean>
+
+    <!-- 4.配置SqlSessionTemplate模板对象 -->
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <!-- 只能使用构造器注入sqlSessionFactory：因为它没有set方法 -->
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+    </bean>
+
+    <!-- 5.配置transactionManager事务管理器：依赖于dataSource数据源 -->
+<!--    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
+<!--        <property name="dataSource" ref="dataSource"/>-->
+<!--    </bean>-->
+
+    <!-- 6.注册事务管理驱动 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+</beans>

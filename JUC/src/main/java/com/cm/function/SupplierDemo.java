@@ -1,0 +1,17 @@
+package com.cm.function;
+
+
+import java.util.function.Supplier;
+
+/**
+ * 供给型接口:只有返回值,没有参数
+ */
+public class SupplierDemo {
+    public static void main(String[] args) {
+        Supplier supplier = () -> {
+            return "xixi";
+        };
+        System.out.println(supplier.get());
+
+    }
+}

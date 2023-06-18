@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace=绑定一个对应的Dao/Mapper接口-->
+<mapper namespace="com.cm.mapper.UserMapper">
+
+    <!-- 查询所有用户信息 -->
+    <!-- 当通过包起别名后，resultType(结果类型)直接使用对应实体类名即可，不需要写全类名 -->
+    <select id="getUsers" resultType="com.cm.pojo.User">
+        Select * from user
+    </select>
+
+    <!-- 增加用户信息 -->
+    <insert id="insertUser" parameterType="com.cm.pojo.User">
+        Insert into user(id, name, pwd)
+        values(#{id} ,#{name}, #{pwd})
+    </insert>
+
+    <!-- 删除用户信息 -->
+    <delete id="deleteUser" parameterType="int">
+        Delete  from user where id = #{id}
+    </delete>
+
+    <!-- 修改用户信息 -->
+    <update id="UpdateUser" parameterType="com.cm.pojo.User">
+        Update user
+        set name = #{name}, pwd = #{pwd}
+        where id = #{id}
+    </update>
+
+</mapper>
