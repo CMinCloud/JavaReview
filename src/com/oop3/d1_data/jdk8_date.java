@@ -1,7 +1,10 @@
 package com.oop3.d1_data;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 
 public class jdk8_date {
     public static void main(String[] args) {
@@ -17,5 +20,17 @@ public class jdk8_date {
         System.out.println(period.getYears());
         System.out.println(period.getMonths());
         System.out.println(period.getDays());
+
+
+        System.out.println("----------------------");
+        LocalDateTime localDateTime = LocalDateTime.now();
+        System.out.println(localDateTime);
+        System.out.println("-----------");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-HH-dd hh:mm");
+        String format = dateTimeFormatter.format(localDateTime);
+        System.out.println(format);
+//        TemporalAccessor parse = dateTimeFormatter.parse("2023-06-18T23:35:12.130");
+//        System.out.println(parse);
+
     }
 }
