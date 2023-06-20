@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.*;
+
 /**
  * @Author：CM
  * @Package：dataTransfer.controller
@@ -22,5 +24,12 @@ public class DemoController {
     public QueryParams helloWorld(@RequestBody QueryParams queryParams){
         System.out.println(queryParams);
         return queryParams;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = new int[5];
+        List<Integer> list = new ArrayList<>();
+        Queue<Integer> queue = new LinkedList<>();
+        list.size();
     }
 }
