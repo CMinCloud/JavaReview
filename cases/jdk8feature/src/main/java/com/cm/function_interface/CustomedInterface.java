@@ -17,6 +17,14 @@ package com.cm.function_interface;
 @FunctionalInterface
 public interface CustomedInterface {
     void test();
+
+    default void test1(){
+
+    }
+
+    default void test2(){
+
+    }
 }
 
 
