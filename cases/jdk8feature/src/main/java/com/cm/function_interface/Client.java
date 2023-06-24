@@ -15,3 +15,19 @@ public class Client {
         customedInterface.test();
     }
 }
+
+
+class A implements CustomedInterface{
+
+    @Override
+    public void test() {
+
+    }
+
+
+    @Override
+    public void test1() {
+        CustomedInterface.super.test1();
+        System.out.println("重写了接口的默认方法");
+    }
+}
