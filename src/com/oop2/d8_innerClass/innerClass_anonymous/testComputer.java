@@ -80,6 +80,22 @@ class Computer {
         usb.connect();
     }
 
+
+    public usb createUsb(){
+        usb usb = new usb() {
+            @Override
+            public void connect() {
+                System.out.println("电脑连接usb");
+            }
+
+            @Override
+            public void unconnect() {
+                System.out.println("电脑释放usb连接");
+            }
+        };
+        return usb;
+    }
+
 }
 
 

@@ -2,8 +2,15 @@ package com.oop2.d8_innerClass.innerClass;
 
 public class Outer {
     private String name;
-    public void OuterShow(){
+
+    public void OuterShow() {
         System.out.println(name);
+    }
+
+
+    public void InnerInvoke() {
+        Inner inner = new Inner("zss", 25);
+        inner.InnerShow();
     }
 
 
@@ -11,7 +18,7 @@ public class Outer {
      * 成员内部类，不能加static修饰 属于外部类对象
      * 类似成员方法
      */
-    public class Inner{
+    public class Inner {
         private String name;
         public int age;
 //        public static int size; //jdk16才开始允许定义静态成员
@@ -37,7 +44,7 @@ public class Outer {
             this.age = age;
         }
 
-        public void InnerShow(){
+        public void InnerShow() {
             System.out.println(name);
             OuterShow(); //访问外部类方法
         }
@@ -48,7 +55,8 @@ public class Outer {
     public static void main(String[] args) {
 
 
-        Inner inner = new Outer().new Inner("zs",18);
-
+        Inner inner = new Outer().new Inner("zs", 18);
+        Outer outer = new Outer();
+        outer.InnerInvoke();
     }
 }
