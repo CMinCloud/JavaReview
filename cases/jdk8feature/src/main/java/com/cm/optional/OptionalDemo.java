@@ -22,13 +22,15 @@ public class OptionalDemo {
             System.out.println("会员姓名是：" + mem.getName());
         });
 
-        ofNullable();
+//        ofNullable();
 
 //        ifPresent();
 
 //        orElseGet();
 
 //        filter();
+
+        chanFilter();
     }
 
     public static Optional<Member> getMemberByIdFromDB() {
@@ -55,7 +57,8 @@ public class OptionalDemo {
 
     public static void orElseGet(){
         String name = null;
-        Optional.ofNullable(name).orElse("aaa");
+        String aaa = Optional.ofNullable(name).orElse("aaa");
+        System.out.println(aaa);
         String s = Optional.ofNullable(name).orElseGet(new Supplier<String>() {
             @Override
             public String get() {
@@ -77,8 +80,10 @@ public class OptionalDemo {
         Predicate<String> p1 = pwd-> pwd.length() > 6;
         Predicate<String> p2 = pwd-> pwd.length() < 20;
         Optional<String> optional = Optional.ofNullable(password);
-        boolean present = optional.filter(p1.and(p2)).isPresent();//判断密码是否既大于6位又小于20位
-        System.out.println(present);
+//        boolean present = optional.filter(p1.and(p2)).isPresent();//判断密码是否既大于6位又小于20位
+        Optional<String> present = optional.filter(((Predicate<String>) s -> s.length() > 6).and(s -> s.length() < 20));
+        System.out.println(present.get());
+
 //        传统写法
         if(password.length() < 20 && password.length() > 6){
 
