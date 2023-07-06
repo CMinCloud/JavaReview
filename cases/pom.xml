@@ -11,6 +11,7 @@
     <modules>
         <module>datetansfer</module>
         <module>jdk8feature</module>
+        <module>mapstruct</module>
     </modules>
 
     <properties>
