@@ -63,12 +63,15 @@ public class MyExportDemo {
         System.out.println("数据已导出到 Excel 文件中。");
     }
 
+
+
     private static void addData(List<Object[]> dataList, Object data1, Object data2, Object data3) {
         Object[] rowData = new Object[3];
         rowData[0] = data1;
         rowData[1] = data2;
         rowData[2] = data3;
         dataList.add(rowData);
+
     }
 
 
